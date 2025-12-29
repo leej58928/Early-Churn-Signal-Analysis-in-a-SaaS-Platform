@@ -94,7 +94,6 @@ This approach improves retention leverage while minimizing unnecessary operation
 - Risk scoring & prioritization
 - Business-oriented data storytelling
 
----
 
 ## Notes
 This project uses a fully synthetic dataset and is intended for educational and portfolio purposes.
