@@ -5,12 +5,10 @@ This project analyzes early-stage customer behavior in a fictional multi-table S
 
 Rather than focusing on black-box churn prediction, the analysis emphasizes **interpretable early signals** and translates them into a **practical risk prioritization framework** that can support real-world retention decisions.
 
----
 
 ## Business Question
 **Can early customer behavior and experience (within the first 30 days) help identify customers at higher risk of early churn, and how can those signals be operationalized for targeted intervention?**
 
----
 
 ## Dataset
 The analysis uses a synthetic but realistic SaaS dataset consisting of five relational tables:
@@ -23,7 +21,6 @@ The analysis uses a synthetic but realistic SaaS dataset consisting of five rela
 
 All tables are linked via `account_id` and `subscription_id`.
 
----
 
 ## Methodology
 
@@ -35,7 +32,6 @@ Customers were segmented based on subscription duration:
 
 This outcome-based segmentation enables a clear comparison between early disengagement and sustained retention.
 
----
 
 ### 2. Early Usage Analysis (Q1)
 Early behavior was defined as activity occurring within the first **30 days after signup**.
@@ -48,7 +44,6 @@ Initial hypotheses tested whether early usage volume and feature exploration exp
 **Finding:**  
 Early usage metrics showed only marginal differences between early churners and long-term subscribers, suggesting that usage volume alone provides limited explanatory power.
 
----
 
 ### 3. Early Support Friction Analysis (Q2)
 Given the limited signal from usage metrics, the analysis shifted to early customer experience indicators derived from support interactions:
@@ -61,7 +56,6 @@ Given the limited signal from usage metrics, the analysis shifted to early custo
 Early churners consistently exhibited higher support friction, including longer resolution times and higher escalation rates.  
 Although differences were moderate in magnitude, their directional consistency indicated that early friction is a more actionable churn signal than usage intensity alone.
 
----
 
 ### 4. Risk Scoring Framework (Q3)
 To operationalize these findings, an interpretable **early churn risk score** was constructed using:
@@ -75,7 +69,6 @@ Scores were interpreted **relatively** using percentile rankings rather than abs
 **Finding:**  
 Customers in the top 20% of risk scores showed a meaningfully higher early churn rate (~22% relative increase), validating the framework as a prioritization tool.
 
----
 
 ## Key Insights
 - Early churn is **not strongly driven by usage volume**, but by **early customer friction**
@@ -83,7 +76,6 @@ Customers in the top 20% of risk scores showed a meaningfully higher early churn
 - Risk scoring is most effective as a **relative ranking mechanism**, not a deterministic predictor
 - Targeted intervention strategies can be more efficient than uniform retention efforts
 
----
 
 ## Business Implications
 Rather than attempting to predict churn perfectly, companies can:
@@ -93,7 +85,6 @@ Rather than attempting to predict churn perfectly, companies can:
 
 This approach improves retention leverage while minimizing unnecessary operational costs.
 
----
 
 ## Tools & Skills
 - Python (pandas, numpy, matplotlib)
