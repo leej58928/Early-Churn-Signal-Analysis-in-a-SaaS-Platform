@@ -93,6 +93,29 @@ This approach improves retention leverage while minimizing unnecessary operation
 - Customer segmentation
 - Risk scoring & prioritization
 - Business-oriented data storytelling
+  
+
+## Key Insights & Actions
+
+**Insight 1**  
+Customers experiencing early support friction were significantly more likely to churn within the first 30 days.
+
+**Implication**  
+The onboarding phase represents a critical churn risk window.
+
+**Action**  
+Retention teams should trigger proactive outreach for customers showing early support tickets or inactivity signals.
+
+---
+
+**Insight 2**  
+Low engagement during the early lifecycle strongly correlated with churn risk.
+
+**Implication**  
+Early behavior is predictive of long-term retention.
+
+**Action**  
+Product teams should design onboarding nudges and engagement checkpoints during the first month.
 
 
 ## Notes
