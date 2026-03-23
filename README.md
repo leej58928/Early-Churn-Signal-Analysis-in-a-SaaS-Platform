@@ -1,39 +1,47 @@
 # Identifying Early Signals of Long-Term Subscription  
-### A Data-Driven SaaS Churn Risk Analysis
+## A Data-Driven SaaS Churn Risk Analysis  
+
+---
+
+## Key Results
+
+- Identified that early support friction is a stronger churn signal than usage volume  
+- High-risk accounts showed ~1.6× higher early churn probability  
+- Developed an interpretable risk scoring framework to prioritize retention intervention  
+
+---
 
 ## Overview
 
-This project analyzes early-stage customer behavior in a fictional SaaS platform (RavenStack) to identify signals associated with early churn versus long-term retention.
+This project analyzes early-stage customer behavior in a simulated SaaS platform (RavenStack) to identify signals associated with early churn versus long-term retention.
 
-Rather than focusing on perfect churn prediction, the analysis reframes churn as a prioritization problem:  
+Rather than focusing on churn prediction, the analysis reframes churn as a prioritization problem:
+
 **Which customers should receive proactive intervention during onboarding?**
 
-The notebook combines early usage behavior, support friction signals, and interpretable risk scoring to translate customer analytics into operational retention strategy.
+The project combines behavioral data and support friction signals to build an interpretable risk-scoring framework for retention prioritization.
 
 ---
 
 ## Business Framing
 
-Customer churn in subscription businesses is rarely caused by a single catastrophic event.  
+Customer churn in subscription businesses is rarely caused by a single event.  
 It is more often driven by accumulated onboarding friction.
 
 This project asks:
 
-> Can we detect early warning signals within the first 30 days and use them to prioritize retention effort?
-
-The goal is not just analytics —  
-it is actionable customer success strategy.
+**Can we detect early signals within the first 30 days and prioritize retention effort accordingly?**
 
 ---
 
 ## Research Objective
 
-Identify early-stage behavioral signals that distinguish:
+Identify early-stage signals that distinguish:
 
-- customers who churn within 90 days  
-- customers who remain subscribed 180+ days
+- Customers who churn within 90 days  
+- Customers who remain subscribed 180+ days  
 
-and translate those signals into an operational risk prioritization framework.
+and translate these signals into a risk-based prioritization framework.
 
 ---
 
@@ -41,27 +49,27 @@ and translate those signals into an operational risk prioritization framework.
 
 The dataset simulates a multi-table SaaS environment including:
 
-- account metadata
-- subscription history
-- feature usage logs
-- support tickets
-- churn events
+- account metadata  
+- subscription history  
+- feature usage logs  
+- support tickets  
+- churn events  
 
-This structure mirrors real-world SaaS analytics pipelines where behavior, billing, and support systems must be integrated.
+This structure mirrors real-world SaaS analytics pipelines where behavioral, billing, and support systems must be integrated.
 
-All analysis focuses on the first **30 days after signup**, the most critical onboarding window.
+All analysis focuses on the first 30 days after signup — the most critical onboarding window.
 
 ---
 
 ## Analytical Approach
 
-The project follows a layered analytical structure:
-
 ### 1. Outcome Segmentation
+
 Customers are categorized into:
-- Early Churn (≤ 90 days)
-- Long-Term (≥ 180 days)
-- Mid-Term (excluded from primary comparison)
+
+- Early Churn (≤ 90 days)  
+- Long-Term (≥ 180 days)  
+- Mid-Term (excluded from primary comparison)  
 
 This creates a clear retention contrast.
 
@@ -71,13 +79,11 @@ This creates a clear retention contrast.
 
 Metrics examined:
 
-- total usage events
-- unique features used
-- active usage days
-- engagement persistence
+- total usage events  
+- unique features used  
+- active usage days  
 
-Finding:
-Usage volume differences are small and insufficient to explain churn alone.
+**Finding:** Usage differences were minimal and insufficient to explain churn.
 
 ---
 
@@ -85,13 +91,12 @@ Usage volume differences are small and insufficient to explain churn alone.
 
 Support signals examined:
 
-- number of early support tickets
-- resolution time
-- escalation rate
-- satisfaction scores
+- number of early support tickets  
+- resolution time  
+- escalation rate  
+- satisfaction scores  
 
-Finding:
-Early churners experience slightly higher friction across all support indicators.
+**Finding:** Early churners consistently experienced higher support friction across all indicators.
 
 This suggests churn is more closely tied to onboarding experience than raw activity.
 
@@ -101,11 +106,9 @@ This suggests churn is more closely tied to onboarding experience than raw activ
 
 Customers are flagged as high-risk when early support friction crosses defined thresholds.
 
-Result:
-High-risk customers exhibit ~1.6× higher early churn probability.
+**Result:** High-risk customers show ~1.6× higher early churn probability.
 
-These customers are not guaranteed churners —  
-they represent high-leverage intervention targets.
+These users are not guaranteed churners — they represent high-leverage intervention targets.
 
 ---
 
@@ -113,94 +116,82 @@ they represent high-leverage intervention targets.
 
 A weighted risk score aggregates:
 
-- support ticket volume
-- escalation signals
-- resolution delays
-- engagement persistence
+- support ticket volume  
+- escalation signals  
+- resolution delays  
+- engagement persistence  
 
-The score functions as a ranking tool, not a binary predictor.
+The score is designed as a **ranking tool**, not a binary predictor.
 
-It enables prioritized retention effort.
+It enables prioritization of retention effort based on relative risk.
 
 ---
 
 ## Key Insights
 
-Early churn is not driven by low activity alone.
-
-It is more strongly associated with onboarding friction and support severity.
+- Early churn is not driven by low activity alone  
+- Onboarding friction and support severity are stronger signals of churn risk  
+- Risk signals are probabilistic, but consistent enough to guide prioritization  
 
 This shifts retention strategy from engagement nudges to friction reduction.
 
-Risk signals are probabilistic, not deterministic —  
-but consistent enough to guide resource allocation.
-
 ---
 
-## Insight → Action Translation
+## Insight → Action
 
-This analysis supports a proactive onboarding defense strategy:
+This analysis supports a targeted onboarding strategy:
 
-- Flag accounts with repeated early support escalation
-- Trigger priority onboarding workflows
-- Assign targeted customer success outreach
-- Measure retention lift post-intervention
+- Flag accounts with repeated early support escalation  
+- Trigger priority onboarding workflows  
+- Assign targeted customer success outreach  
 
-The objective is smarter prioritization, not blanket intervention.
-
-Retention effort should follow risk ranking.
+The goal is to allocate retention resources where they have the highest impact.
 
 ---
 
 ## Business Implication
 
-The project reframes churn analytics as a resource allocation problem.
+This project reframes churn analytics as a **resource allocation problem**:
 
-Instead of asking:
+**Where will intervention have the highest marginal impact?**
 
-> Who will churn?
-
-It asks:
-
-> Where will intervention have the highest marginal impact?
-
-This perspective aligns analytics with operational decision-making.
+This perspective aligns analytics directly with operational decision-making.
 
 ---
 
 ## Limitations
 
-- Synthetic dataset (simulated SaaS environment)
-- Limited long-term financial metrics
-- Simplified support severity modeling
+- Synthetic dataset (simulated SaaS environment)  
+- Limited long-term financial metrics  
+- Simplified support severity modeling  
 
-The framework demonstrates methodology rather than production forecasting.
+This project demonstrates methodology rather than production forecasting.
 
 ---
 
 ## Conclusion
 
-Early churn emerges from accumulated onboarding friction, not isolated events.
+Early churn is driven more by accumulated onboarding friction than low activity.
 
-Support signals provide actionable early warning indicators.
+Support signals provide actionable early indicators of churn risk.
 
-An interpretable risk score enables targeted retention strategy without overfitting.
+An interpretable risk score enables targeted intervention and more efficient allocation of retention resources.
 
-The result is a scalable framework for data-informed customer success prioritization.
+This project demonstrates how analytics can directly inform customer success strategy.
 
 ---
 
 ## Tools & Techniques
 
-- Python (Pandas, NumPy, Matplotlib)
-- Behavioral feature engineering
-- Early-window cohort analysis
-- Risk scoring framework
-- Exploratory data visualization
+- Python (Pandas, NumPy, Matplotlib)  
+- Behavioral feature engineering  
+- Early-window cohort analysis  
+- Risk scoring framework  
+- Exploratory data analysis  
 
 ---
 
 ## Author
 
-Jihoo Lee  
+**Jihoo Lee**  
 Data Analytics & Business Analytics Portfolio Project
