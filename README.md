@@ -1,197 +1,81 @@
-# Identifying Early Signals of Long-Term Subscription  
-## A Data-Driven SaaS Churn Risk Analysis  
-
----
-
-## Key Results
-
-- Identified that early support friction is a stronger churn signal than usage volume  
-- High-risk accounts showed ~1.6× higher early churn probability  
-- Developed an interpretable risk scoring framework to prioritize retention intervention  
-
----
+# Early Churn Signal Analysis in a SaaS Product
 
 ## Overview
+This project analyzes early customer behavior in a fictional multi-table SaaS dataset (RavenStack) to identify which signals are associated with **churn within 90 days** versus **long-term subscription**.
 
-This project analyzes early-stage customer behavior in a simulated SaaS platform (RavenStack) to identify signals associated with early churn versus long-term retention.
+The analysis found that basic early usage metrics showed only small differences across customer groups, while **early support friction** was more useful for identifying at-risk accounts. Accounts flagged for early support friction showed an early churn rate about **1.6x higher** than the rest of the population.
 
-Rather than focusing on churn prediction, the analysis reframes churn as a prioritization problem:
+## Business Question
+Which customer behaviors in the first 30 days are most associated with **early churn** versus **long-term retention** in a subscription SaaS product?
 
-**Which customers should receive proactive intervention during onboarding?**
+## Key Findings
+- Basic early usage metrics showed only **modest differences** between early churners and long-term subscribers.
+- Early support friction provided more useful signals than raw usage volume alone.
+- Accounts flagged as high-risk based on early support friction showed an **early churn rate about 1.6x higher** than the rest of the population.
+- A simple weighted risk score helped rank accounts for **retention prioritization**, rather than serving as a deterministic churn model.
 
-The project combines behavioral data and support friction signals to build an interpretable risk-scoring framework for retention prioritization.
+## Dataset
+This project uses a fictional multi-table SaaS dataset with five tables:
 
----
+- `accounts`
+- `subscriptions`
+- `feature_usage`
+- `support_tickets`
+- `churn_events`
 
-## Business Framing
+The dataset was designed to simulate common SaaS lifecycle signals, including onboarding behavior, subscription history, support interactions, and churn outcomes.
 
-Customer churn in subscription businesses is rarely caused by a single event.  
-It is more often driven by accumulated onboarding friction.
+## Customer Outcome Definition
+To create a cleaner comparison, accounts were grouped by subscription duration:
 
-This project asks:
+- **Early Churn**: subscription ended within 90 days  
+- **Long-Term**: subscription lasted 180 days or longer  
+- **Mid-Term**: 91–179 days, excluded from the primary comparison  
 
-**Can we detect early signals within the first 30 days and prioritize retention effort accordingly?**
-
----
-
-## Research Objective
-
-Identify early-stage signals that distinguish:
-
-- Customers who churn within 90 days  
-- Customers who remain subscribed 180+ days  
-
-and translate these signals into a risk-based prioritization framework.
-
----
-
-## Data Description
-
-The dataset simulates a multi-table SaaS environment including:
-
-- account metadata  
-- subscription history  
-- feature usage logs  
-- support tickets  
-- churn events  
-
-This structure mirrors real-world SaaS analytics pipelines where behavioral, billing, and support systems must be integrated.
-
-All analysis focuses on the first 30 days after signup — the most critical onboarding window.
-
----
+## Early Observation Window
+Early behavior was measured within the first 30 days after signup to capture onboarding-period engagement before longer-term retention outcomes were fully realized.
 
 ## Analytical Approach
 
-### 1. Outcome Segmentation
+### 1. Measure early usage behavior
+I first evaluated onboarding-period usage behavior, including:
 
-Customers are categorized into:
+- total usage events
+- number of unique features used
+- beta feature adoption
+- number of active days in the first 30 days
 
-- Early Churn (≤ 90 days)  
-- Long-Term (≥ 180 days)  
-- Mid-Term (excluded from primary comparison)  
+These usage-based metrics showed only modest differences between early churners and long-term subscribers, suggesting that raw activity volume alone was not enough to clearly separate the two groups.
 
-This creates a clear retention contrast.
+### 2. Measure early support friction
+I then examined support interactions during the first 30 days after signup, including:
 
----
+- number of support tickets
+- average resolution time
+- escalation rate
+- average satisfaction score
 
-### 2. Early Usage Analysis
+Compared with usage-based metrics, support-related signals showed more consistent directional differences. Early churners had slightly longer resolution times and slightly higher escalation rates, suggesting that onboarding friction may be more informative than raw usage volume alone.
 
-Metrics examined:
+## High-Risk Segment Validation
+To translate the findings into an operational rule, I defined a simple **high-risk flag** for accounts with repeated early support demand or any escalation during the first 30 days.
 
-- total usage events  
-- unique features used  
-- active usage days  
+Accounts flagged as high-risk showed an early churn rate about **1.6x higher** than the rest of the population. This does not make support friction a deterministic predictor of churn, but it does make it a useful signal for prioritizing intervention.
 
-**Finding:** Usage differences were minimal and insufficient to explain churn.
+## Interpretable Risk Scoring
+To move from descriptive analysis to prioritization, I built a simple weighted risk score using:
 
----
+- early support ticket volume
+- escalation rate
+- average resolution time
+- early engagement persistence
 
-### 3. Early Support Friction Analysis
+The score is intended as a **prioritization tool**, not a production prediction model. Customers in the top risk percentiles showed higher early churn rates than the broader population, supporting its use for ranked retention outreach.
 
-Support signals examined:
+## Business Takeaway
+This project suggests that early churn is better framed as a **prioritization problem** than a pure prediction problem.
 
-- number of early support tickets  
-- resolution time  
-- escalation rate  
-- satisfaction scores  
+In this dataset, basic usage volume alone had limited explanatory value, while early support friction provided a more practical signal for identifying accounts that may need proactive onboarding support.
 
-**Finding:** Early churners consistently experienced higher support friction across all indicators.
-
-This suggests churn is more closely tied to onboarding experience than raw activity.
-
----
-
-### 4. High-Risk Segment Identification
-
-Customers are flagged as high-risk when early support friction crosses defined thresholds.
-
-**Result:** High-risk customers show ~1.6× higher early churn probability.
-
-These users are not guaranteed churners — they represent high-leverage intervention targets.
-
----
-
-### 5. Interpretable Risk Score Construction
-
-A weighted risk score aggregates:
-
-- support ticket volume  
-- escalation signals  
-- resolution delays  
-- engagement persistence  
-
-The score is designed as a **ranking tool**, not a binary predictor.
-
-It enables prioritization of retention effort based on relative risk.
-
----
-
-## Key Insights
-
-- Early churn is not driven by low activity alone  
-- Onboarding friction and support severity are stronger signals of churn risk  
-- Risk signals are probabilistic, but consistent enough to guide prioritization  
-
-This shifts retention strategy from engagement nudges to friction reduction.
-
----
-
-## Insight → Action
-
-This analysis supports a targeted onboarding strategy:
-
-- Flag accounts with repeated early support escalation  
-- Trigger priority onboarding workflows  
-- Assign targeted customer success outreach  
-
-The goal is to allocate retention resources where they have the highest impact.
-
----
-
-## Business Implication
-
-This project reframes churn analytics as a **resource allocation problem**:
-
-**Where will intervention have the highest marginal impact?**
-
-This perspective aligns analytics directly with operational decision-making.
-
----
-
-## Limitations
-
-- Synthetic dataset (simulated SaaS environment)  
-- Limited long-term financial metrics  
-- Simplified support severity modeling  
-
-This project demonstrates methodology rather than production forecasting.
-
----
-
-## Conclusion
-
-Early churn is driven more by accumulated onboarding friction than low activity.
-
-Support signals provide actionable early indicators of churn risk.
-
-An interpretable risk score enables targeted intervention and more efficient allocation of retention resources.
-
-This project demonstrates how analytics can directly inform customer success strategy.
-
----
-
-## Tools & Techniques
-
-- Python (Pandas, NumPy, Matplotlib)  
-- Behavioral feature engineering  
-- Early-window cohort analysis  
-- Risk scoring framework  
-- Exploratory data analysis  
-
----
-
-## Author
-
-**Jihoo Lee**  
-Data Analytics & Business Analytics Portfolio Project
+## Tools
+Python, Pandas, NumPy, Matplotlib, Jupyter Notebook
