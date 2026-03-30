@@ -14,6 +14,14 @@ Which customer behaviors in the first 30 days are most associated with **early c
 - Accounts flagged as high-risk based on early support friction showed an **early churn rate about 1.6x higher** than the rest of the population.
 - A simple weighted risk score helped rank accounts for **retention prioritization**, rather than serving as a deterministic churn model.
 
+## High-Risk Segment Validation
+
+<img width="1475" height="748" alt="image" src="https://github.com/user-attachments/assets/cae59909-1699-47b0-b2c9-3dcc4c365547" />
+
+Accounts in the top 20% of the risk score distribution show a **meaningfully higher early churn rate (~1.6×)** compared to the rest of the population.
+
+This confirms that early support-related signals can be used to identify at-risk accounts before churn occurs.
+
 ## Dataset
 This project uses a fictional multi-table SaaS dataset with five tables:
 
